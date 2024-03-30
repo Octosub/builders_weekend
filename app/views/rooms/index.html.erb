@@ -1,0 +1,27 @@
+<%= link_to "Create a new room", new_room_path %>
+
+<%= cl_image_tag "kkjd1hrggotynkgv1b5gnkdyoepr" %>
+<h1>Rooms</h1>
+<hr>
+<% @rooms.each do |room| %>
+  <h2>Name:</h2>
+  <%= link_to room_path(room) do %>
+    <p><%= room.name %></p>
+  <% end %>
+  <br>
+  <h2>Description:</h2>
+  <p><%= room.description %></p>
+  <br>
+  <p>Images:</p>
+  <div class="room-image">
+    <%=  image_tag "instabase_img1.jpg" %>
+  </div>
+  <div class="room-image">
+    <%=  image_tag "instabase_img1.jpg" %>
+  </div>
+  <div class="room-image">
+    <%=  image_tag "instabase_img1.jpg" %>
+  </div>
+  <p>url: <%= room.url %></p>
+  <hr>
+<% end %>
