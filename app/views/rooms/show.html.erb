@@ -5,4 +5,6 @@
 <h2>Description:</h2>
 <p><%= @room.description %></p>
 
-<%= cl_image_tag @room.photo.key %>
+<% @room.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>

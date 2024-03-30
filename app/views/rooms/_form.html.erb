@@ -3,7 +3,7 @@
   <%= simple_form_for @room, class: "room-form" do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :photo, as: :file %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, "Create Room" %>
   <% end %>
 </div>

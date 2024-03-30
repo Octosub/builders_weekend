@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+=begin
 Room.destroy_all
 
 counter = 1
@@ -20,3 +21,4 @@ end
 
 puts
 puts "Rooms created"
+=end
