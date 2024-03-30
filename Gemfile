@@ -6,7 +6,7 @@ gem 'faker'
 gem "dotenv-rails"
 gem "cloudinary"
 gem 'simple_form'
-
+gem 'multipart-post', '~> 2.1'
 
 
 
