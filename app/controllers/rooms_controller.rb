@@ -45,8 +45,17 @@ class RoomsController < ApplicationController
 
     response = http.request(request)
 
-    File.open("output.mp4", "wb") do |file|
-      file.write(response.body)
+    case response.code.to_i
+    when 202
+      puts "Still processing. Retrying in 10 seconds..."
+      sleep(10)
+      get_video(id)
+    when 200
+      File.open('./output.mp4', 'wb') { |file| file.write(response.body) }
+      puts "Download complete!"
+    when 400..599
+      File.open('./error.json', 'wb') { |file| file.write(response.body) }
+      puts "Error: Check ./error.json for details."
     end
   end
 
