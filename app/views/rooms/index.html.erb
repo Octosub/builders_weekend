@@ -1,6 +1,5 @@
 <%= link_to "Create a new room", new_room_path %>
 
-<%= cl_image_tag "kkjd1hrggotynkgv1b5gnkdyoepr" %>
 <h1>Rooms</h1>
 <hr>
 <% @rooms.each do |room| %>
@@ -14,13 +13,9 @@
   <br>
   <p>Images:</p>
   <div class="room-image">
-    <%=  image_tag "instabase_img1.jpg" %>
-  </div>
-  <div class="room-image">
-    <%=  image_tag "instabase_img1.jpg" %>
-  </div>
-  <div class="room-image">
-    <%=  image_tag "instabase_img1.jpg" %>
+    <% room.photos.each do |photo| %>
+       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
   </div>
   <p>url: <%= room.url %></p>
   <hr>
