@@ -1,0 +1,9 @@
+<h1>Create a new Room</h1>
+<div class="room-form-container">
+  <%= simple_form_for @room, class: "room-form" do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :photo, as: :file %>
+    <%= f.button :submit, "Create Room" %>
+  <% end %>
+</div>
