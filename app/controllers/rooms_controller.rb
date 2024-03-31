@@ -52,7 +52,7 @@ class RoomsController < ApplicationController
   #   request = Net::HTTP::Post::Multipart.new(uri.path, {
   #     'image' => UploadIO.new(File.open(filepath), 'image/png', 'image.png')
   #   })
-    request['authorization'] = ENV['STABILITY_TOKEN']
+   # request['authorization'] = ENV['STABILITY_TOKEN']
 
 
   #   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
