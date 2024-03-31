@@ -5,7 +5,25 @@
 <% @room.photos.each do |photo| %>
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
-<img src="https://www.instabase.jp/imgs/r/uploads/room_image/image/264346/161a9f02-e69a-45ec-96a2-87aa5cb208f7.jpg.medium.jpeg" alt="error">
+<% counter = 0 %>
+<% arr = [] %>
+<% Dir.foreach(Rails.root.join('app', 'assets', 'images', "#{@room.name}")) do |photo| %>
+  <% filepath = "#{@room.name}" + "/#{counter}.jpg" %>
+  <%# <%filepath = Rails.root.join('app', 'assets', 'images', "#{@room.name}", "#{counter}.jpg") %> %>
+  <%# img_to_video(filepath) %>
+  <% arr << filepath %>
+  <%# <%=image_tag filepath %> %>
+  <% counter += 1 %>
+<% end %>
+<%# <%= image_tag "instabase_img2.png" %> %>
+<% arr.each do |image| %>
+  <% if image[-5] < "5" %>
+    <%= image_tag image %>
+  <% end %>
+<% end %>
+<%# <% arr = Dir.glob(Rails.root.join('app', 'assets', 'images', "#{@room.name}", '*')).sort %> %>
+<%# <%= image_tag arr[0] %> %>
+<%# <img src="https://www.instabase.jp/imgs/r/uploads/room_image/image/264346/161a9f02-e69a-45ec-96a2-87aa5cb208f7.jpg.medium.jpeg" alt="error"> %>
 <%# <%= image_tag "new_image.jpg" %> %>
 <%# <%= image_tag "#{@room.id}.jpg" %> %>
 <%# <img src="/app/assets/images/new_image.jpg" alt="problem"> %>
