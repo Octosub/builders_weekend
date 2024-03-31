@@ -14,14 +14,6 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @video_filepath = @room.video_filepath
-
-    url = "https://ece1-152-165-122-193.ngrok-free.app/"
-    user_serialized = URI.open(url).read
-    user = JSON.parse(user_serialized)
-
-    user[0]["images"].each_with_index do |image, index|
-      crop_image("https://www.instabase.jp#{image}", index)
-    end
   end
 
   def crop_image(image_url, room_id)
@@ -35,7 +27,6 @@ class RoomsController < ApplicationController
     filepath = Rails.root.join('app', 'assets', 'images', "#{@room.id}", "#{room_id}.jpg")
     # resized_image.write(new_directory_path)
     resized_image.write(filepath)
-
   end
 
   def new
@@ -52,7 +43,7 @@ class RoomsController < ApplicationController
   #   request = Net::HTTP::Post::Multipart.new(uri.path, {
   #     'image' => UploadIO.new(File.open(filepath), 'image/png', 'image.png')
   #   })
-    request['authorization'] = ENV['STABILITY_TOKEN']
+    # request['authorization'] = ENV['STABILITY_TOKEN']
 
 
   #   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
@@ -91,6 +82,14 @@ class RoomsController < ApplicationController
 
   def create
     room = Room.new(room_params)
+    url = "https://ece1-152-165-122-193.ngrok-free.app/"
+    user_serialized = URI.open(url).read
+    user = JSON.parse(user_serialized)
+    room_data = user.find { |hash| hash["room_id"] == room.name }
+
+    room_data["images"].each_with_index do |image, index|
+      crop_image("https://www.instabase.jp#{image}", index, room)
+    end
     # crop_image("https://www.instabase.jp/imgs/r/uploads/room_image/image/264346/161a9f02-e69a-45ec-96a2-87aa5cb208f7.jpg.medium.jpeg")
 
     # id = img_to_video
@@ -104,11 +103,16 @@ class RoomsController < ApplicationController
     end
   end
 
-  def crop_image(image_url, room_id)
+  def crop_image(image_url, room_id, room)
     image = Magick::Image.read(image_url).first
     cropped_image = image.crop(0, 0, image.columns, image.rows)
     resized_image = cropped_image.resize_to_fill(1024, 576)
-    filepath = Rails.root.join('app', 'assets', 'images', "#{room_id}.jpg")
+    # Define the new directory path
+    new_directory_path = Rails.root.join('app', 'assets', 'images', "#{room.name}")
+    # Create the new directory
+    FileUtils.mkdir_p(new_directory_path) unless File.directory?(new_directory_path)
+    filepath = Rails.root.join('app', 'assets', 'images', "#{room.name}", "#{room_id}.jpg")
+    # resized_image.write(new_directory_path)
     resized_image.write(filepath)
   end
   # def crop_image(image_url)
