@@ -14,15 +14,15 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @video_filepath = @room.video_filepath
-    counter = 0
-    Dir.foreach(Rails.root.join('app', 'assets', 'images', "#{@room.name}")) do |photo|
-      filepath = Rails.root.join('app', 'assets', 'images', "#{@room.name}", "#{counter}.jpg")
-      video_path = Rails.root.join('app', 'assets', 'images', "#{@room.name}", "#{counter}.mp4")
-      id = img_to_video(filepath)
-      # img_to_video(filepath).write(video_path)
-      get_video(id, video_path)
-      counter += 1 if counter < 4
-    end
+    # counter = 0
+    # Dir.foreach(Rails.root.join('app', 'assets', 'images', "#{@room.name}")) do |photo|
+    #   filepath = Rails.root.join('app', 'assets', 'images', "#{@room.name}", "#{counter}.jpg")
+    #   video_path = Rails.root.join('app', 'assets', 'images', "#{@room.name}", "#{counter}.mp4")
+    #   id = img_to_video(filepath)
+    #   # img_to_video(filepath).write(video_path)
+    #   get_video(id, video_path)
+    #   counter += 1 if counter < 4
+    # end
   end
 
   def new
