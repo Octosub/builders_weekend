@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
   require 'net/http'
   require 'uri'
+  require 'json'
+  require 'open-uri'
+  require 'fileutils'
+  require 'rmagick'
 
   def index
     @rooms = Room.all
@@ -9,6 +13,27 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @video_filepath = @room.video_filepath
+
+    url = "https://ece1-152-165-122-193.ngrok-free.app/"
+    user_serialized = URI.open(url).read
+    user = JSON.parse(user_serialized)
+
+    user[0]["images"].each_with_index do |image, index|
+      crop_image("https://www.instabase.jp#{image}", index)
+    end
+  end
+
+  def crop_image(image_url, room_id)
+    image = Magick::Image.read(image_url).first
+    cropped_image = image.crop(0, 0, image.columns, image.rows)
+    resized_image = cropped_image.resize_to_fill(1024, 576)
+    # Define the new directory path
+    new_directory_path = Rails.root.join('app', 'assets', 'images', "#{@room.id}")
+    # Create the new directory
+    FileUtils.mkdir_p(new_directory_path) unless File.directory?(new_directory_path)
+    filepath = Rails.root.join('app', 'assets', 'images', "#{@room.id}", "#{room_id}.jpg")
+    # resized_image.write(new_directory_path)
+    resized_image.write(filepath)
   end
 
   def new

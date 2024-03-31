@@ -7,8 +7,8 @@ gem "dotenv-rails"
 gem "cloudinary"
 gem 'simple_form'
 gem 'multipart-post', '~> 2.1'
-
-
+gem 'streamio-ffmpeg'
+gem 'rmagick'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"

@@ -147,6 +147,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.22.3)
     msgpack (1.7.2)
+    multi_json (1.15.0)
     multipart-post (2.4.0)
     mutex_m (0.2.0)
     net-imap (0.4.10)
@@ -172,7 +173,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
+    observer (0.1.2)
     pg (1.5.6)
+    pkg-config (1.5.6)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
@@ -228,6 +231,9 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.6)
+    rmagick (5.4.4)
+      observer (~> 0.1)
+      pkg-config (~> 1.4)
     rubyzip (2.3.2)
     selenium-webdriver (4.19.0)
       base64 (~> 0.2)
@@ -246,6 +252,8 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     stringio (3.1.0)
     thor (1.3.1)
     timeout (0.4.1)
@@ -291,10 +299,12 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
+  rmagick
   selenium-webdriver
   simple_form
   sprockets-rails
   stimulus-rails
+  streamio-ffmpeg
   turbo-rails
   tzinfo-data
   web-console
