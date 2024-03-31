@@ -1,14 +1,13 @@
 <h3>Create room</h3>
-
 <h1><%= @room.name %></h1>
-
 <h2>Description:</h2>
 <p><%= @room.description %></p>
-
 <% @room.photos.each do |photo| %>
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
-
 <img src="https://www.instabase.jp/imgs/r/uploads/room_image/image/264346/161a9f02-e69a-45ec-96a2-87aa5cb208f7.jpg.medium.jpeg" alt="error">
+<%# <%= image_tag "new_image.jpg" %> %>
+<%= image_tag "#{@room.id}.jpg" %>
+<img src="/app/assets/images/new_image.jpg" alt="problem">
 <%# <%= video_tag @room.video_filepath.split("/")[-1], controls: true %> %>
 <%= @room.video_filepath %>
