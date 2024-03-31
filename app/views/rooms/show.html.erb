@@ -1,14 +1,17 @@
-<h3>Create room</h3>
-<h1><%= @room.name %></h1>
-<h2>Description:</h2>
-<p><%= @room.description %></p>
-<%# <% @room.photos.each do |photo| %>
-  <%#= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-  <%# end %>
-  <%# counter = 0 %>
-  <%# arr = [] %>
-  <% Dir.foreach(Rails.root.join('app', 'assets', 'images', "#{@room.name}")) do |video| %>
-    <%# <%= p video.to_s[-1] == "4" %> %>
-    <%= video_tag "#{@room.name}/#{video}", controls: true if video.to_s[-1] == "4" %>
-  <% end %>
-  <%# <%= @room.video_filepath %>
+
+<div class="big-c">
+  <div class="room-show-container">
+    <h1>Room Nr.: <%= @room.name %></h1>
+    <p><%= @room.description %></p>
+    <%# <% @room.photos.each do |photo| %>
+      <%#= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+      <%# end %>
+      <%# counter = 0 %>
+      <%# arr = [] %>
+      <% Dir.foreach(Rails.root.join('app', 'assets', 'images', "#{@room.name}")) do |video| %>
+        <%# <%= p video.to_s[-1] == "4" %> %>
+        <%= video_tag "#{@room.name}/#{video}", controls: true if video.to_s[-1] == "4" %>
+      <% end %>
+      <%# <%= @room.video_filepath %>
+  </div>
+</div>

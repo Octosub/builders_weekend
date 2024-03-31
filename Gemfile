@@ -8,7 +8,7 @@ gem "cloudinary"
 gem 'simple_form'
 gem 'multipart-post', '~> 2.1'
 gem 'streamio-ffmpeg'
-
+gem 'sassc-rails'
 gem 'rmagick'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

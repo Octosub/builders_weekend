@@ -1,9 +1,12 @@
-<h1>Create a new Room</h1>
-<div class="room-form-container">
-  <%= simple_form_for @room, class: "room-form" do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <%= f.button :submit, "Create Room" %>
-  <% end %>
+<div class="big-c">
+  <div class="new-video-container">
+    <h1>Create a trailer for your room</h1>
+    <div class="room-form-container">
+      <%= simple_form_for @room, class: "room-form" do |f| %>
+        <p><strong>Room ID:</strong></p>
+        <%= f.input :name %>
+        <%= f.button :submit, "Create!" %>
+      <% end %>
+    </div>
+  </div>
 </div>
