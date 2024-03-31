@@ -27,7 +27,7 @@ class RoomsController < ApplicationController
   #   request = Net::HTTP::Post::Multipart.new(uri.path, {
   #     'image' => UploadIO.new(File.open(filepath), 'image/png', 'image.png')
   #   })
-  #   request['authorization'] = 'Bearer '
+    request['authorization'] = ENV['STABILITY_TOKEN']
 
 
   #   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
   #   http.use_ssl = true
 
   #   request = Net::HTTP::Get.new(url)
-  #   request['Authorization'] = 'Bearer '
+  #   request['Authorization'] = ENV['STABILITY_TOKEN']
   #   request['accept'] = 'video/*'
 
   #   response = http.request(request)
