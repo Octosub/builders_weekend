@@ -21,7 +21,7 @@ class RoomsController < ApplicationController
       id = img_to_video(filepath)
       # img_to_video(filepath).write(video_path)
       get_video(id, video_path)
-      counter += 1
+      counter += 1 if counter < 4
     end
   end
 
