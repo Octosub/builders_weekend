@@ -8,10 +8,12 @@
       <%# end %>
       <%# counter = 0 %>
       <%# arr = [] %>
-      <% Dir.foreach(Rails.root.join('app', 'assets', 'images', "#{@room.name}")) do |video| %>
-        <%# <%= p video.to_s[-1] == "4" %> %>
-        <%= video_tag "#{@room.name}/#{video}", controls: true if video.to_s[-1] == "4" %>
-      <% end %>
+      <div class="video-container">
+        <% Dir.foreach(Rails.root.join('app', 'assets', 'images', "#{@room.name}")) do |video| %>
+          <%# <%= p video.to_s[-1] == "4" %>
+          <%= video_tag "#{@room.name}/#{video}", controls: true if video.to_s[-1] == "4" %>
+        <% end %>
+      </div>
       <%# <%= @room.video_filepath %>
   </div>
 </div>
