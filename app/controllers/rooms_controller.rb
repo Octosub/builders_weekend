@@ -32,13 +32,13 @@ class RoomsController < ApplicationController
   def img_to_video(filepath)
     uri = URI('https://api.stability.ai/v2beta/image-to-video')
 
-  #   uri = URI('https://api.stability.ai/v2beta/image-to-video')
+    #   uri = URI('https://api.stability.ai/v2beta/image-to-video')
 
-  #   filepath = Rails.root.join('app', 'assets', 'images', 'instabase_img2.png')
+    #   filepath = Rails.root.join('app', 'assets', 'images', 'instabase_img2.png')
 
-  #   request = Net::HTTP::Post::Multipart.new(uri.path, {
-  #     'image' => UploadIO.new(File.open(filepath), 'image/png', 'image.png')
-  #   })
+    #   request = Net::HTTP::Post::Multipart.new(uri.path, {
+    #     'image' => UploadIO.new(File.open(filepath), 'image/png', 'image.png')
+    #   })
    # request['authorization'] = ENV['STABILITY_TOKEN']
     request = Net::HTTP::Post::Multipart.new(uri.path, {
         'image' => UploadIO.new(File.open(filepath), 'image/jpg', 'image.jpg')
@@ -68,7 +68,7 @@ class RoomsController < ApplicationController
     when 202
       puts "Still processing. Retrying in 10 seconds..."
       sleep(10)
-      get_video(id)
+      get_video(id, file_path)
     when 200
       File.open(file_path, 'wb') { |file| file.write(response.body) }
       puts "Success: Video saved to #{file_path}"
