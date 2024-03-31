@@ -9,5 +9,5 @@
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
 
-
-<%= video_tag 'output.mp4', controls: true, preload: 'none' %>
+<%= video_tag @room.video_filepath.split("/")[-1], controls: true %>
+<%= @room.video_filepath %>

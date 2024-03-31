@@ -8,6 +8,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @video_filepath = @room.video_filepath
   end
 
   def new
@@ -44,6 +45,7 @@ class RoomsController < ApplicationController
     request['accept'] = 'video/*'
 
     response = http.request(request)
+    file_path = Rails.root.join('app', 'assets', 'videos', "#{id}.mp4")
 
     case response.code.to_i
     when 202
@@ -51,12 +53,13 @@ class RoomsController < ApplicationController
       sleep(10)
       get_video(id)
     when 200
-      File.open('./output.mp4', 'wb') { |file| file.write(response.body) }
-      puts "Download complete!"
+      File.open(file_path, 'wb') { |file| file.write(response.body) }
+      puts "Success: Video saved to #{file_path}"
     when 400..599
       File.open('./error.json', 'wb') { |file| file.write(response.body) }
       puts "Error: Check ./error.json for details."
     end
+    return file_path
   end
 
   def create
@@ -64,7 +67,7 @@ class RoomsController < ApplicationController
 
     id = img_to_video
 
-    room.description = get_video(id)
+    room.video_filepath = get_video(id)
 
     if room.save
       redirect_to room_path(room)
