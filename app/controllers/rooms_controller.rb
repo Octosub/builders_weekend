@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @video_filepath = @room.video_filepath
-    crop_image("https://www.instabase.jp/imgs/r/uploads/room_image/image/264346/161a9f02-e69a-45ec-96a2-87aa5cb208f7.jpg.medium.jpeg")
+    crop_image("https://www.instabase.jp/imgs/r/uploads/room_image/image/264346/161a9f02-e69a-45ec-96a2-87aa5cb208f7.jpg.medium.jpeg", @room.id)
   end
 
   def new
@@ -79,22 +79,26 @@ class RoomsController < ApplicationController
     end
   end
 
-  def crop_image(image_url)
-    # Load the image into ImageMagick
-    filepath = Rails.root.join('app', 'assets', 'images', 'new_image.jpg')
-
+  def crop_image(image_url, room_id)
     image = Magick::Image.read(image_url).first
-    # image = Magick::Image.read(image_url).first
-
-    # Crop the image
     cropped_image = image.crop(0, 0, image.columns, image.rows)
-
-    # Resize the image
     resized_image = cropped_image.resize_to_fill(1024, 576)
-
-    # Write the image back to a file
+    filepath = Rails.root.join('app', 'assets', 'images', "#{room_id}.jpg")
     resized_image.write(filepath)
   end
+  # def crop_image(image_url)
+  #   # Load the image into ImageMagick
+  #   filepath = Rails.root.join('app', 'assets', 'images', 'new_image.jpg')
+  #   image = Magick::Image.read(image_url).first
+  #   # Crop the image
+  #   cropped_image = image.crop(0, 0, image.columns, image.rows)
+
+  #   # Resize the image
+  #   resized_image = cropped_image.resize_to_fill(1024, 576)
+
+  #   # Write the image back to a file
+  #   resized_image.write(filepath)
+  # end
 
   private
 
