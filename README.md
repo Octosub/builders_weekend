@@ -3,6 +3,8 @@
 
 This program was built within 3 days for the Builders Weekend Hackathon in Tokyo.
 
+https://github.com/Octosub/builders_weekend/assets/135783511/72600b33-4e71-4c53-bcbb-2dca0c35cc4a
+
 Technologies used were: 
 - Ruby on Rails
 - Python
