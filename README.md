@@ -3,6 +3,8 @@
 
 This program was built within 3 days for the Builders Weekend Hackathon in Tokyo.
 
+![image](https://github.com/Octosub/builders_weekend/assets/135783511/d5591a12-18ea-45b6-9603-10368571ae9a)
+
 https://github.com/Octosub/builders_weekend/assets/135783511/72600b33-4e71-4c53-bcbb-2dca0c35cc4a
 
 Technologies used were: 
