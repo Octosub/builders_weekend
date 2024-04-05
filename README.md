@@ -5,7 +5,12 @@ This program was built within 3 days for the Builders Weekend Hackathon in Tokyo
 
 ![image](https://github.com/Octosub/builders_weekend/assets/135783511/d5591a12-18ea-45b6-9603-10368571ae9a)
 
+The idea was to concatatenate the MP4's with (ffmpeg)[https://ffmpeg.org/] and make a trailer that could've looked something like this.
+
 https://github.com/Octosub/builders_weekend/assets/135783511/72600b33-4e71-4c53-bcbb-2dca0c35cc4a
+
+But we ran out of time before being able to concatenate the videos together. 
+
 
 Technologies used were: 
 - Ruby on Rails
